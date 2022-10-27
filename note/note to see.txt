@@ -1,0 +1,4 @@
+https://www.itsolutionstuff.com/post/laravel-9-multi-auth-create-multiple-authentication-in-laravelexample.html
+https://www.itsolutionstuff.com/post/laravel-9-pdf-laravel-9-generate-pdf-file-using-dompdfexample.html
+https://appdividend.com/category/laravel/
+https://www.codermen.com/how-to-make-multi-auth-in-laravel-8/
