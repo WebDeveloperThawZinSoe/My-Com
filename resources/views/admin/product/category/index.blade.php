@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title','Admin Panel')
+@section('title','Admin Panel | Category')
 @section('content')
 <div class="wrapper">
 
