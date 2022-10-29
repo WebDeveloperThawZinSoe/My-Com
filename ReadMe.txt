@@ -18,8 +18,10 @@ date (required)
 
 Stock
 ------
-    Category
+    Category (Done Category ALL UI )
         - name
+        - image
+        - description 
     SubCategory
         - category_name
         - name
