@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,19 +26,25 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
-    Route::get('/admin/home' , [AdminController::class, 'home'])->name('admin#home');
+    Route::get('/admin/home', [AdminController::class, 'home'])->name('admin#home');
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect()->route('admin#home#product#category');
     })->name('dashboard');
 
     /* Admin Panel Slidebar */
-    Route::get("/admin/home/product/category", [RouteController::class, 'product_category'])->name("admin#home#product#category");
+    Route::group(['prefix' => 'category'], function () {
+        //category
+        Route::group(['prefix' => 'home'], function () {
+            Route::get("/home/product/category", [RouteController::class, 'product_category'])->name("admin#home#product#category");
+            Route::get("product/category/subcategory", [RouteController::class, 'product_subcategry'])->name("admin#home#product#category#subcategory");
+            Route::get("product", [RouteController::class, 'product_index'])->name("admin#home#product");
+            Route::get("product/create", [RouteController::class, 'product_create'])->name("admin#home#product#create");
+        });
 
-    Route::get("/admin/home/product/category/subcategory", [RouteController::class, 'product_subcategry'])->name("admin#home#product#category#subcategory");
-
-    Route::get("/admin/home/product", [RouteController::class, 'product_index'])->name("admin#home#product");
-
-    Route::get("/admin/home/product/create", [RouteController::class, 'product_create'])->name("admin#home#product#create");
+        //vendor
+        Route::group(['prefix' => 'vendor'], function(){
+            Route::get('home', [VendorController::class, 'home'])->name('admin#vendor#home');
+            Route::get('details', [VendorController::class, 'details'])->name('admin#vendor#details');
+        });
+    });
 });
-
-

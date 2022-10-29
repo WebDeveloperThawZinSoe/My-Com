@@ -8,22 +8,22 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/" target="_blank" class="nav-link">Website</a>
             </li>
- 
+
         </ul>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Navbar Search -->
-            
 
-          
-            
+
+
+
             <li class="nav-item">
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>
                 </a>
             </li>
-            
+
         </ul>
     </nav>
     <!-- /.navbar -->
@@ -69,7 +69,7 @@
 
                     <!-- Vendor Start -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             {{-- <i class=" fas fa-copy"></i> --}}
                             <i class="nav-icon fas fa-copy "></i>
                             <p>
@@ -80,9 +80,9 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/layout/top-nav.html" class="nav-link">
+                                <a href="{{ route('admin#vendor#home') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Top Navigation</p>
+                                    <p>Home</p>
                                 </a>
                             </li>
                             <li class="nav-item">
