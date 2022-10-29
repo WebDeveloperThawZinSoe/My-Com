@@ -32,6 +32,12 @@ Route::middleware([
 
     /* Admin Panel Slidebar */
     Route::get("/admin/home/product/category", [RouteController::class, 'product_category'])->name("admin#home#product#category");
+
+    Route::get("/admin/home/product/category/subcategory", [RouteController::class, 'product_subcategry'])->name("admin#home#product#category#subcategory");
+
+    Route::get("/admin/home/product", [RouteController::class, 'product'])->name("admin#home#product");
+
+    Route::get("/admin/home/product/create", [RouteController::class, 'create'])->name("admin#home#product#create");
 });
 
 

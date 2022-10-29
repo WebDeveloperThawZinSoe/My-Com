@@ -2,3 +2,5 @@ https://www.itsolutionstuff.com/post/laravel-9-multi-auth-create-multiple-authen
 https://www.itsolutionstuff.com/post/laravel-9-pdf-laravel-9-generate-pdf-file-using-dompdfexample.html
 https://appdividend.com/category/laravel/
 https://www.codermen.com/how-to-make-multi-auth-in-laravel-8/
+https://dev.to/shantanu_jana/how-to-preview-image-before-uploading-in-javascript-1f6g
+https://bootsnipp.com/snippets/66Ex7
