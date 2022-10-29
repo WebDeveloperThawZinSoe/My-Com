@@ -12,7 +12,7 @@ class RouteController extends Controller
 
     
     public function product_subcategry(){
-        return view("admin.product.category.index");
+        return view("admin.product.subcategory.index");
     }
 
     public function product(){

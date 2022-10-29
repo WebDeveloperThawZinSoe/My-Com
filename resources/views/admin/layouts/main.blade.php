@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- dropzonejs -->
   <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+    <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  
   </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -79,6 +83,8 @@
     <script>
           @yield('js')
     </script>
+    <!-- Select2 -->
+  <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
 </body>
 
 </html>
