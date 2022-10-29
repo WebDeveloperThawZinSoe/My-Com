@@ -35,9 +35,9 @@ Route::middleware([
 
     Route::get("/admin/home/product/category/subcategory", [RouteController::class, 'product_subcategry'])->name("admin#home#product#category#subcategory");
 
-    Route::get("/admin/home/product", [RouteController::class, 'product'])->name("admin#home#product");
+    Route::get("/admin/home/product", [RouteController::class, 'product_index'])->name("admin#home#product");
 
-    Route::get("/admin/home/product/create", [RouteController::class, 'create'])->name("admin#home#product#create");
+    Route::get("/admin/home/product/create", [RouteController::class, 'product_create'])->name("admin#home#product#create");
 });
 
 

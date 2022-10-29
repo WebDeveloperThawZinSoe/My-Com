@@ -20,6 +20,11 @@ class RouteController extends Controller
     }
 
     public function product_create(){
-        return view("admin.product.category.index");
+        return view("admin.product.create");
+    }
+
+
+    public function product_index(){
+        return view("admin.product.index");
     }
 }

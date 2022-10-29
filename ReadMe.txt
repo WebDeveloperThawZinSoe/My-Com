@@ -22,7 +22,7 @@ Stock
         - name
         - image
         - description 
-    SubCategory
+    SubCategory  (Done Category ALL UI )
         - category_name
         - name
     Stock
@@ -39,4 +39,6 @@ Stock
         - color_product_price
         - quantity
         - special
+        - description (wysiwyg)
+        
         
