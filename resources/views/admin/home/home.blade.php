@@ -4,7 +4,6 @@
 <div class="wrapper">
 
   
-    @include('admin.layouts.nav')
 
   
     <!-- Control Sidebar -->

@@ -27,10 +27,13 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
-</head>
+    <!-- dropzonejs -->
+  <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+  </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
+
     @include('admin.layouts.nav')
     <div class="content-wrapper">
      
@@ -69,9 +72,13 @@
     <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
-
+<!-- dropzonejs -->
+<script src="{{ asset('admin/dist/plugins/dropzone/min/dropzone.min.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+    <script>
+          @yield('js')
+    </script>
 </body>
 
 </html>
