@@ -178,25 +178,13 @@
                             <li class="nav-item">
                                 <a href="/admin/home/product/category" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Category</p>
+                                    <p>View All Partner</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/admin/home/product/category/subcategory" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>SubCategory</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/home/product" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Product</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/home/product/create" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add New Product</p>
+                                    <p>Create New Partner</p>
                                 </a>
                             </li>
                         </ul>

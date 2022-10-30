@@ -41,6 +41,11 @@
 
     <!-- Vue CDN Link -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+
+
+
+    @yield('css_link')
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -54,6 +59,8 @@
             <!-- ./wrapper -->
         </div>
     </div>
+
+    @yield('js_link')
     <!-- jQuery -->
     <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
