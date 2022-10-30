@@ -46,6 +46,7 @@ Route::middleware([
         Route::group(['prefix' => 'vendor'], function(){
             Route::get('', [VendorController::class, 'home'])->name('admin#vendor');
             Route::get('details', [VendorController::class, 'details'])->name('admin#vendor#details');
+            Route::get('/create', [VendorController::class, 'create'])->name('admin#vendor#create');
         });
     });
 });

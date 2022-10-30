@@ -17,4 +17,10 @@ class VendorController extends Controller
     {
         return view('admin.vendor.detail');
     }
+
+    //create
+    public function create()
+    {
+        return view('admin.vendor.create');
+    }
 }
