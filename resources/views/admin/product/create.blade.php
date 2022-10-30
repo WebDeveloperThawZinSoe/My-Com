@@ -134,7 +134,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Create Product</h3>
+                    <h3 class="card-title">Create Product | <a href="/admin/home/product">View All Product </a> </h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -298,8 +298,9 @@
            
                         <p  class="btn btn-info" onclick="addNewVariant()">Add Variant</button>
 
+                        <form action="">
                         <div id="new_fields"></div>
-
+                        </form>
 
 
                     </div>
@@ -311,7 +312,6 @@
                 </form>
             </div>
             <!-- /.card -->
-
 
 
 
@@ -416,6 +416,6 @@
 
       function addNewVariant(){
         var div1=document.getElementById("new_fields");
-        div1.innerHTML +="";
+        div1.innerHTML +="<div class='card'><div class='row' style='margin-top:10px;padding:5px'><div class='col-md-6'> <div class='form-group'> <label for='product_code'>Product Code</label><input type='number' class='form-control' id='product_code' placeholder='Enter Product Code'></div></div><div class='col-md-6'><div class='form-group'><label for='width'>Color</label><input type='color' class='form-control' id='width' placeholder='Enter Width'></div></div><div class='col-md-6'><div class='form-group'><label for='width'>Price</label><input type='number' class='form-control' id='width' placeholder='Enter Width'></div></div><div class='col-md-6'><div class='form-group'><label for='width'>Image</label><input type='file' class='form-control' id='width' placeholder='Enter Width'></div></div></div>";
       }
 @endsection

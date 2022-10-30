@@ -80,21 +80,50 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin#vendor#home') }}" class="nav-link">
+                                <a href="{{ route('admin#vendor') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Home</p>
+                                    <p>View ALl Vendor List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Top Navigation + Sidebar</p>
+                                    <p>Add New Vendor</p>
                                 </a>
                             </li>
 
                         </ul>
                     </li>
                     <!-- Vendor End -->
+
+                    <!-- Purchase Start -->
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            {{-- <i class=" fas fa-copy"></i> --}}
+                            <i class="nav-icon fas fa-copy "></i>
+                            <p>
+                                Purchase
+                                <i class="fas fa-angle-left right"></i>
+
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View ALl Purchase List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add New Purchase</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- Purchase End -->
 
                     <!-- Product Start -->
                     <li class="nav-item">
@@ -108,25 +137,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin/home/product/category" class="nav-link">
+                                <a href="{{ route('home#product#category') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Category</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/home/product/category/subcategory" class="nav-link">
+                                <a href="{{ route('home#product#category#subcategory') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SubCategory</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/home/product" class="nav-link">
+                                <a href="{{ route('home#product') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Product</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/home/product/create" class="nav-link">
+                                <a href="{{ route('home#product#create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New Product</p>
                                 </a>

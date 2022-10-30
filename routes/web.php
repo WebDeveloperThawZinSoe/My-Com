@@ -28,22 +28,23 @@ Route::middleware([
 
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin#home');
     Route::get('/dashboard', function () {
-        return redirect()->route('admin#home#product#category');
+        // return redirect()->route('admin#home#product#category');
+        return view("admin.home.index");
     })->name('dashboard');
 
     /* Admin Panel Slidebar */
-    Route::group(['prefix' => 'category'], function () {
+    Route::group(['prefix' => 'home'], function () {
         //category
-        Route::group(['prefix' => 'home'], function () {
-            Route::get("/home/product/category", [RouteController::class, 'product_category'])->name("admin#home#product#category");
-            Route::get("product/category/subcategory", [RouteController::class, 'product_subcategry'])->name("admin#home#product#category#subcategory");
-            Route::get("product", [RouteController::class, 'product_index'])->name("admin#home#product");
-            Route::get("product/create", [RouteController::class, 'product_create'])->name("admin#home#product#create");
+        Route::group(['prefix' => 'product'], function () {
+            Route::get("category", [RouteController::class, 'product_category'])->name("home#product#category");
+            Route::get("category/subcategory", [RouteController::class, 'product_subcategry'])->name("home#product#category#subcategory");
+            Route::get("/", [RouteController::class, 'product_index'])->name("home#product");
+            Route::get("create", [RouteController::class, 'product_create'])->name("home#product#create");
         });
 
         //vendor
         Route::group(['prefix' => 'vendor'], function(){
-            Route::get('home', [VendorController::class, 'home'])->name('admin#vendor#home');
+            Route::get('', [VendorController::class, 'home'])->name('admin#vendor');
             Route::get('details', [VendorController::class, 'details'])->name('admin#vendor#details');
         });
     });

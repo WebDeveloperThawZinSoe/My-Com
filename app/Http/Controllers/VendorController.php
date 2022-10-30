@@ -9,7 +9,7 @@ class VendorController extends Controller
     //vendor home
     public function home()
     {
-        return view('admin.vendor.home');
+        return view('admin.vendor.index');
     }
 
     //vendor details
