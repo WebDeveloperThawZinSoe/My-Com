@@ -30,7 +30,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- dropzonejs -->
-    {{-- <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css')}}"> --}}
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -66,14 +65,14 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script> --}}
     <!-- Sparkline -->
-    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script> --}}
     <!-- JQVMap -->
-    <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    {{-- <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
     <!-- jQuery Knob Chart -->
-    <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script> --}}
     <!-- daterangepicker -->
     <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -86,7 +85,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
     <!-- dropzonejs -->
-    <script src="{{ asset('admin/dist/plugins/dropzone/min/dropzone.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/dist/plugins/dropzone/min/dropzone.min.js') }}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
     <script>
