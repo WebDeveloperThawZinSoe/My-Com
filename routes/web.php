@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,12 @@ Route::middleware([
             Route::get('', [VendorController::class, 'home'])->name('admin#vendor');
             Route::get('details', [VendorController::class, 'details'])->name('admin#vendor#details');
             Route::get('/create', [VendorController::class, 'create'])->name('admin#vendor#create');
+        });
+
+        //Partner
+        Route::group(['prefix' => 'partner'], function(){
+            Route::get('', [PartnerController::class, 'index'])->name('admin#partner');
+            Route::get('/create', [PartnerController::class, 'create'])->name('admin#partner#create');
         });
     });
 });
