@@ -3,11 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
-<<<<<<< HEAD
-use App\Models\Vendor;
-=======
 use App\Http\Controllers\PartnerController;
->>>>>>> be1e3a10ad1ffd000a96923809862006d993851d
 use Illuminate\Support\Facades\Route;
 
 /*

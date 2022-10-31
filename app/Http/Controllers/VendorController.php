@@ -11,7 +11,7 @@ class VendorController extends Controller
     //vendor home
     public function home()
     {
-        $vendors = Vendor::when(request('key'), function($query){
+        $vendors = Vendor::orderBy('id', 'DESC')->when(request('key'), function($query){
                         $query->where('name', 'like', '%'.request('key').'%')
                         ->OrWhere('phone', 'like', '%'.request('key').'%')
                         ->OrWhere('email', 'like', '%'.request('key').'%')
@@ -40,7 +40,7 @@ class VendorController extends Controller
         $this->dataValidate($request);
         $data = $this->getData($request);
         Vendor::create($data);
-        return redirect()->route('admin#vendor')->with(['message' => 'Insert Successfully']);
+        return redirect()->route('admin#vendor')->with(['message' => 'Vendor Create Success']);
     }
 
     //update page
@@ -56,14 +56,14 @@ class VendorController extends Controller
         $this->dataValidate($request);
         $data = $this->getData($request);
         Vendor::where('id', $request->vendorId)->update($data);
-        return redirect()->route('admin#vendor')->with(['message' => 'updated successfully']);
+        return redirect()->route('admin#vendor')->with(['message' => 'Vendor Update Success']);
     }
 
     //delete
     public function delete(Request $request)
     {
             Vendor::where('id', $request->id)->delete();
-            return back()->with(['message' => 'Deleted successfully']);
+            return back()->with(['message' => 'Vendor Delete Success']);
     }
 
 

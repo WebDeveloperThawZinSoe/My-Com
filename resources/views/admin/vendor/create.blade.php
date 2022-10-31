@@ -22,21 +22,22 @@
                             <input type="text" class="form-control" name="vendorName" placeholder="Enter Name" required>
                         </div>
                         @error('vendorName')
-                            {{ $message }}
+                        <p class="text text-danger">{{ $message }}</p>
+                            
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputPassword1">Phone</label>
                             <input type="text" class="form-control" name="vendorPhone" placeholder="Enter Phone" required>
                         </div>
                         @error('vendorPhone')
-                            {{ $message }}
+                        <p class="text text-danger">{{ $message }}</p>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
                             <input type="text" class="form-control" name="vendorEmail" placeholder="Enter Email" required>
                         </div>
                         @error('vendorEmail')
-                            {{ $message }}
+                        <p class="text text-danger">{{ $message }}</p>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputPassword1">Website</label>
@@ -44,20 +45,20 @@
                                 placeholder="Enter Website">
                         </div>
                         @error('vendorWebsite')
-                            {{$message}}
+                        <p class="text text-danger">{{ $message }}</p>
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputPassword1">Address</label>
                             <textarea class="form-control" name="vendorAddress" placeholder="Enter Address" required></textarea>
                         </div>
                         @error('vendorAddress')
-                            {{ $message }}
+                        <p class="text text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </form>
             </div>

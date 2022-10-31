@@ -1,18 +1,14 @@
 @extends('admin.layouts.main')
 @section('title', 'Vendor Update')
 @section('content')
-    <div class="row">
-        {{--
-        name (required)
-        phone (required)
-        email (required)
-        website
-        address(required)
-        --}}
+<div class="wrapper">
+
+
+
         <div class="col-9 offset-1 mt-5">
-            <div class="card card-primary">
+            <div class="card card-warning">
                 <div class="card-header">
-                    <h3 class="card-title">Create Vendor | <a href="{{ route('admin#vendor') }}">View All Vendor </a> </h3>
+                    <h3 class="card-title">Edit Vendor | <a href="{{ route('admin#vendor') }}">View All Vendor </a> </h3>
                 </div>
                 <form method="POST" action="{{ route('admin#vendor#update') }}">
                     @csrf
@@ -58,7 +54,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-warning">Update</button>
                     </div>
                 </form>
             </div>
