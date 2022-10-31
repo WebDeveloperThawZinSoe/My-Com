@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +47,17 @@ Route::middleware([
         Route::group(['prefix' => 'vendor'], function(){
             Route::get('', [VendorController::class, 'home'])->name('admin#vendor');
             Route::get('details', [VendorController::class, 'details'])->name('admin#vendor#details');
-            Route::get('/create', [VendorController::class, 'create'])->name('admin#vendor#create');
+
+            //vendor create
+            Route::get('/create', [VendorController::class, 'create'])->name('admin#vendor#create#route');
+            Route::post('/create', [VendorController::class, 'vendorCreate'])->name('admin#vendor#create');
+
+            //vendor update
+            Route::get('/update/{id}', [VendorController::class, 'update'])->name('admin#vendor#update#route');
+            Route::post('/update/', [VendorController::class, 'vendorUpdate'])->name('admin#vendor#update');
+
+            //vendor delete
+            Route::post('/delete', [VendorController::class, 'delete'])->name('admin#vendor#delete');
         });
     });
 });
