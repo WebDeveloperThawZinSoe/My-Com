@@ -3,7 +3,11 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
+<<<<<<< HEAD
 use App\Models\Vendor;
+=======
+use App\Http\Controllers\PartnerController;
+>>>>>>> be1e3a10ad1ffd000a96923809862006d993851d
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +30,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+    Route::fallback([RouteController::class,"error_404"])->name("error_404");
 
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin#home');
     Route::get('/dashboard', function () {
@@ -58,6 +64,12 @@ Route::middleware([
 
             //vendor delete
             Route::post('/delete', [VendorController::class, 'delete'])->name('admin#vendor#delete');
+        });
+
+        //Partner
+        Route::group(['prefix' => 'partner'], function(){
+            Route::get('', [PartnerController::class, 'index'])->name('admin#partner');
+            Route::get('/create', [PartnerController::class, 'create'])->name('admin#partner#create');
         });
     });
 });

@@ -176,13 +176,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin/home/product/category" class="nav-link">
+                                <a href="{{ route('admin#partner') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View All Partner</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/home/product/category/subcategory" class="nav-link">
+                                <a href="{{ route('admin#partner#create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create New Partner</p>
                                 </a>

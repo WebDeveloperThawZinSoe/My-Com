@@ -27,4 +27,8 @@ class RouteController extends Controller
     public function product_index(){
         return view("admin.product.index");
     }
+
+    public function error_404(){
+        return view("admin.404");
+    }
 }
