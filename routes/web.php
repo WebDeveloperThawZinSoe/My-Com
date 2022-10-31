@@ -27,6 +27,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
+    Route::fallback([RouteController::class,"error_404"])->name("error_404");
+
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin#home');
     Route::get('/dashboard', function () {
         // return redirect()->route('admin#home#product#category');
