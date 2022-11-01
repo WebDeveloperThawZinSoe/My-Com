@@ -40,5 +40,12 @@ Stock
         - quantity
         - special
         - description (wysiwyg)
+    Partner (Done Category ALL UI )
+        - name
+        - image
+        - email 
+        - address 
+        - refer_code
+        - refer_point
         
         

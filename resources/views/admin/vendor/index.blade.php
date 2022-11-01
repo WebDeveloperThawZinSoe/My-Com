@@ -22,7 +22,7 @@
                     </div>
                     
                 </form>
-                <h4>Search Key : {{ request('key') }}</h4>
+                <p>Search Result : {{ request('key') }}</p>
             </div>
             @if (session('message'))
             <div class="col-md-12">

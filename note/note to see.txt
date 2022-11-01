@@ -4,3 +4,6 @@ https://appdividend.com/category/laravel/
 https://www.codermen.com/how-to-make-multi-auth-in-laravel-8/
 https://dev.to/shantanu_jana/how-to-preview-image-before-uploading-in-javascript-1f6g
 https://bootsnipp.com/snippets/66Ex7
+https://www.geeksforgeeks.org/laravel-import-export-excel-file/
+https://techvblogs.com/blog/laravel-9-import-export-excel-csv-file
+https://postsrc.com/code-snippets/how-to-get-currently-active-route-in-laravel
