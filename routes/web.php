@@ -63,6 +63,9 @@ Route::middleware([
 
             //vendor excel export
             Route::get("/export", [VendorController::class, 'export'])->name("vendor#excel#export");
+
+            //vendor excel import
+            Route::post("/import", [VendorController::class, 'import'])->name("vendor#excel#import");
         });
 
         //Partner

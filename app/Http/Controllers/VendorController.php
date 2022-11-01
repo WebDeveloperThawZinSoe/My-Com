@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exports\VendorExport;
+use App\Imports\VendorImport;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class VendorController extends Controller
 {
@@ -94,6 +96,13 @@ class VendorController extends Controller
 
     //export
     public function export(){
-        return Excel::download(new VendorExport,'vendor.xlsx'); 
+        $currentTime = Carbon::now();
+        return Excel::download(new VendorExport,"vendor_$currentTime.xlsx"); 
+    }
+
+    //import
+    public function import(){
+       Excel::import(new VendorImport,request()->file('file'));
+       return back()->with(['message' => 'Excel Import Success']);
     }
 }

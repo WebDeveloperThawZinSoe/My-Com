@@ -16,6 +16,6 @@ class VendorExport implements FromCollection,WithHeadings
     }
 
     public function headings(): array{
-        return ["ID","PHONE","EMAIL","WEBSITE","ADDRESS","CREATE_AT","UPDATE_AT"];
+        return ["ID","NAME","PHONE","EMAIL","WEBSITE","ADDRESS","CREATE_AT","UPDATE_AT"];
     }
 }

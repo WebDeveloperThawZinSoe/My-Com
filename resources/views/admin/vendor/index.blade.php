@@ -16,17 +16,27 @@
                             <div class="col-md-1">
                                 <input type="submit" class="btn btn-primary" value="Search">
                             </div>
-                            <div class="col-md-3">
+                        </form>
+                            <div class="col-md-4">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <a href="{{route('vendor#excel#export')}}">
-                                            <p class="btn btn-primary">Excel Exprot</p>
+                                            <p class="btn btn-primary">Exprot</p>
                                         </a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href="">
-                                            <button class="btn btn-primary">Excel Import</button>
-                                        </a>
+                                    <div class="col-md-8">
+                                        <form action="{{route('vendor#excel#import')}}" enctype="multipart/form-data" method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="file" name="file" class="form-control" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <input type="submit" class="btn btn-primary form-control" value=" Import">
+                                                </div>
+                                            </div>
+                                           
+                                        </form>
                                     </div>
                                 </div>
                                
@@ -38,7 +48,7 @@
                        
                     </div>
                     
-                </form>
+               
                 <p>Search Result : {{ request('key') }}</p>
             </div>
             <hr>
