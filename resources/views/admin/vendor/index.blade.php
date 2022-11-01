@@ -10,12 +10,29 @@
                     @csrf
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input type="text" name="key" value="{{ request('key') }}" id="" placeholder="Search" class="form-control">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                                 <input type="submit" class="btn btn-primary" value="Search">
                             </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{{route('vendor#excel#export')}}">
+                                            <p class="btn btn-primary">Excel Exprot</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="">
+                                            <button class="btn btn-primary">Excel Import</button>
+                                        </a>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                           
+                            
                         </div>
                        
                        
@@ -24,6 +41,8 @@
                 </form>
                 <p>Search Result : {{ request('key') }}</p>
             </div>
+            <hr>
+          
             @if (session('message'))
             <div class="col-md-12">
              

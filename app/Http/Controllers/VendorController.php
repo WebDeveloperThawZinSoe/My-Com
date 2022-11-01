@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\VendorExport;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VendorController extends Controller
 {
@@ -88,5 +90,10 @@ class VendorController extends Controller
             'vendorWebsite' => 'unique:vendors,website,'.$request->vendorId, // သူ့ id က မဟုတ်ရင် website လဲ တူလို့မရပါဘူး
             'vendorAddress' => 'required'
         ])->validate();
+    }
+
+    //export
+    public function export(){
+        return Excel::download(new VendorExport,'vendor.xlsx'); 
     }
 }

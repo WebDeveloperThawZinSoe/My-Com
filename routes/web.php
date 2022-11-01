@@ -60,6 +60,9 @@ Route::middleware([
 
             //vendor delete
             Route::post('/delete', [VendorController::class, 'delete'])->name('admin#vendor#delete');
+
+            //vendor excel export
+            Route::get("/export", [VendorController::class, 'export'])->name("vendor#excel#export");
         });
 
         //Partner
