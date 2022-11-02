@@ -31,11 +31,7 @@
 
     <div class="wrapper" style="padding-top: 30px">
 
-        <div>
-            @if (session('message'))
-                {{ session('message') }}
-            @endif
-        </div>
+        @include("admin.components.message")
 
         <div class="col-md-9 offset-md-1">
             <!-- general form elements -->
@@ -55,7 +51,7 @@
                         </div>
 
                         @error('categoryName')
-                            {{ $message }}
+                        <p class="text text-danger">{{ $message }}</p>
                         @enderror
 
                         <div class="form-group">
@@ -81,7 +77,7 @@
                                 placeholder="Enter Category Description"></textarea>
                         </div>
                         @error('categoryDescription')
-                            {{ $message }}
+                           <p class="text text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <!-- /.card-body -->
@@ -105,10 +101,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($categories as $data=>$category)
                         <tr>
                             <input type="hidden" name="categoryId" value="{{ $category->id }}">
-                            <td>{{ $category->id }}</td>
+                            <td>{{ ++$data }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
 

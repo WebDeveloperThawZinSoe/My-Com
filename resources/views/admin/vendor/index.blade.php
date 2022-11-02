@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', 'Vendor Home')
 @section('content')
+@include("admin.components.message")
     <div class="wrapper" style="padding-top: 30px">
 
         <div>
@@ -25,29 +26,21 @@
                     </form>
                     <h4>Search Key : {{ request('key') }}</h4>
                 </div>
-                @if (session('message'))
-                    <div class="col-md-12">
-
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Success</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                            class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                {{ session('message') }}
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="{{route('vendor#excel#export')}}" class="btn btn-primary">Export</a>
                     </div>
-                @endif
+                    <div class="col-md-5">
+                        <form action="{{route('vendor#excel#import')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="file">
+                            <input type="submit" class="btn btn-primary" value="Import">
+                        </form>
+                    </div>
+                  
+                </div>
+               
 
                 <br>
                 <table class="table table-bordered">
