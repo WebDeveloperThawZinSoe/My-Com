@@ -4,82 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    //home and create
+    public function home(){
+        $categories = Category::OrderBy('id', 'desc')
+        ->paginate(5);
+        return view("admin.product.category.index", compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //category create
+    public function create(Request $request)
     {
-        //
+        $this->dataValidation($request);
+        $data = $this->getData($request);
+        if($request->hasFile('logo')){
+            $fileName = uniqid().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->storeAs('public/category/', $fileName);
+            $data['image'] = $fileName;
+        }
+
+        Category::create($data);
+        return back()->with(['message' => 'Insert Successfully']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function delete(Request $request)
     {
-        //
+        Category::where('id', $request->id)->delete();
+        return back()->with(['message' => 'Deleted successfully']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+    //get data
+    private function getData($request){
+        return [
+            'name' => $request->categoryName,
+            'description' => $request->categoryDescription
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
+    //validation
+    private function dataValidation($request){
+        Validator::make($request->all(),[
+            'categoryName' => 'required|unique:categories,name,'.$request->categoryId,
+            'categoryDescription' => 'required'
+        ])->validate();
     }
 }

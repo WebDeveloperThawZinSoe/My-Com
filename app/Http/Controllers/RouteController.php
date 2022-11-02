@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function product_category(){
-        return view("admin.product.category.index");
-    }
 
-    
     public function product_subcategry(){
         return view("admin.product.subcategory.index");
     }
