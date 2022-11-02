@@ -103,12 +103,12 @@
                 <tbody>
                     @foreach ($categories as $data=>$category)
                         <tr>
-                            <input type="hidden" name="categoryId" value="{{ $category->id }}">
+                            {{-- <input type="hidden" name="categoryId" value="{{ $category->id }}"> --}}
                             <td>{{ ++$data }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
 
-                                <span class="btn btn-success" data-toggle="modal" data-target="#category-detail"> <i
+                                <span class="btn btn-success" data-toggle="modal" data-target="#category-detail_{{ $category->id }}"> <i
                                         class="fa fa-info-circle" aria-hidden="true"></i></span>
                                 <form action="" method="GET" class="d-inline">
                                     <input type="hidden" name="id" value="{{ $category->id }}">
@@ -135,28 +135,31 @@
         </div>
 
     </div>
-
-    <div class="modal fade" id="category-detail">
+    @foreach ($categories as $data=>$category)
+    <div class="modal fade" id="category-detail_{{ $category->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Default Modal</h4>
+                    <h4 class="modal-title">Category Detail</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>One fine body&hellip;</p>
+                    <p>Name : {{ $category->name }} </p>
+                    <img src="app/public/category/{{$category->image}}" class="img-responsive" alt="Category Image">
+                    <p>Description : {{ $category->description }} </p>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                 </div>
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
+    @endforeach
     <div class="modal fade" id="category-edit">
         <div class="modal-dialog">
             <div class="modal-content">
