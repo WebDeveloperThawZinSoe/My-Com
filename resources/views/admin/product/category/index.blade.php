@@ -110,14 +110,10 @@
 
                                 <span class="btn btn-success" data-toggle="modal" data-target="#category-detail_{{ $category->id }}"> <i
                                         class="fa fa-info-circle" aria-hidden="true"></i></span>
-                                <form action="" method="GET" class="d-inline">
-                                    <input type="hidden" name="id" value="{{ $category->id }}">
-                                    <input type="hidden" name="categoryName" value="{{ $category->name }}">
-                                    <input type="hidden" name="categoryImage" value="{{ $category->image }}">
-                                    <input type="hidden" name="categoryDescription" value="{{ $category->description }}">
-                                    <span class="btn btn-primary" data-toggle="modal" data-target="#category-edit"> <i
-                                        class="fa fa-wrench" aria-hidden="true"></i></span>
-                                </form>
+
+                                        <span class="btn btn-warning" data-toggle="modal" data-target="#category-edit_{{ $category->id }}"> <i
+                                            class="fa fa-wrench" aria-hidden="true"></i></span>
+                                
 
                                 <form action="{{ route('admin#category#delete') }}" method="POST" class="d-inline">
                                     @csrf
@@ -160,7 +156,8 @@
         <!-- /.modal-dialog -->
     </div>
     @endforeach
-    <div class="modal fade" id="category-edit">
+    @foreach ($categories as $data=>$category)
+    <div class="modal fade" id="category-edit_{{ $category->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -171,17 +168,18 @@
                 </div>
                 <div class="modal-body">
                     <form action="">
+                        <input type="hidden" name="id" value="{{$category->id}}">
                         <div class="form-group">
                             <label for="categoryName">Name</label>
-                            <input type="text" name="categoryName" id="categoryName" class="form-control" value="{{ request('categoryName') }}">
+                            <input type="text" name="categoryName" id="categoryName" class="form-control" value="{{ $category->name }}">
                         </div>
                         <div class="form-group">
-                            <img src="{{ asset('storage/category/'.request('categoryImage')) }}" class="img-thumbnail" alt="">
+                            {{-- <img src="{{ asset('storage/category/'.request('categoryImage')) }}" class="img-thumbnail" alt=""> --}}
                             <input type="file" name="logo" id="" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="categoryDescription">Description</label>
-                            <textarea type="text" name="categoryDescription" id="categoryDescription" class="form-control">{{ request('categoryName') }}</textarea>
+                            <textarea type="text" name="categoryDescription" id="categoryDescription" class="form-control">{{$category->description}}</textarea>
                         </div>
                     </form>
                 </div>
@@ -194,6 +192,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    @endforeach
 @endsection
 
 @section('js')

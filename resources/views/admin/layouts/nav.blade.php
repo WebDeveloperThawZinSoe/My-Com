@@ -542,6 +542,45 @@
                     </li>
                     <!-- SEO End -->
 
+                    <!-- Store Management Start -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Store Management
+                                <i class="fas fa-angle-left right"></i>
+
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin/home/product/category" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Category</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/home/product/category/subcategory" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>SubCategory</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/home/product" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Product</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/home/product/create" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add New Product</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--  Store Management End -->
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
