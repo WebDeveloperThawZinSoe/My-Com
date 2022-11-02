@@ -29,7 +29,7 @@ class CategoryController extends Controller
         }
 
         Category::create($data);
-        return back()->with(['message' => 'Insert Successfully']);
+        return back()->with(['message' => 'Category Insert Success']);
     }
 
     //delete

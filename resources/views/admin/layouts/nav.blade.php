@@ -127,7 +127,7 @@
 
                     <!-- Product Start -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ request()->routeIs('home#product#category') ? 'active' : null }} {{ request()->routeIs('home#product#category#subcategory') ? 'active' : null }}{{ request()->routeIs('home#product') ? 'active' : null }} {{ request()->routeIs('home#product#create') ? 'active' : null }}">
+                        <a href="#" class="nav-link {{ request()->routeIs('admin#category#home') ? 'active' : null }} {{ request()->routeIs('home#product#category#subcategory') ? 'active' : null }}{{ request()->routeIs('home#product') ? 'active' : null }} {{ request()->routeIs('home#product#create') ? 'active' : null }}">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Product
@@ -137,25 +137,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin#category#home') }}" class="nav-link">
+                                <a href="{{ route('admin#category#home') }}" class="nav-link {{ request()->routeIs('admin#category#home') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Category</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ request()->routeIs('home#product#subcategory') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SubCategory</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link {{ request()->routeIs('home#product') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Product</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="#" class="nav-link  {{ request()->routeIs('home#product#create') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New Product</p>
                                 </a>
