@@ -53,6 +53,9 @@ Route::middleware([
             Route::post('/home/create', [CategoryController::class, 'create'])->name('admin#category#create');
             Route::post('delete', [CategoryController::class, 'delete'])->name('admin#category#delete');
 
+            //update
+            Route::post('/update', [CategoryController::class, 'update'])->name('admin#category#update');
+
         });
 
         //vendor

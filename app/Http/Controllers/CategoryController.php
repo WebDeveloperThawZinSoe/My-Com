@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
@@ -31,10 +32,35 @@ class CategoryController extends Controller
         return back()->with(['message' => 'Insert Successfully']);
     }
 
+    //delete
     public function delete(Request $request)
     {
+        $image = Category::where('id', $request->id)->first();
+        $image = $image->image;
+        if($image != null){
+            Storage::delete('/public/category/'. $image);
+        }
         Category::where('id', $request->id)->delete();
         return back()->with(['message' => 'Deleted successfully']);
+    }
+
+    //update
+    public function update(Request $request)
+    {
+        $this->dataValidation($request);
+        $data = $this->getData($request);
+        if($request->hasFile('logo')){
+            $dbImage = Category::where('id', $request->categoryId)->first();
+            $dbImage = $dbImage->image;
+            if($dbImage != null){
+                Storage::delete('/public/category/'.$dbImage);
+            }
+            $fileName = uniqid().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->storeAs('/public/category/', $fileName);
+            $data['image'] = $fileName;
+        }
+        Category::where('id', $request->categoryId)->update($data);
+        return redirect()->route('admin#category#home')->with(['message' => 'Updated Successfully']);
     }
 
     //get data

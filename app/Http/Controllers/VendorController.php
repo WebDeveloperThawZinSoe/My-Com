@@ -97,7 +97,7 @@ class VendorController extends Controller
     //export
     public function export(){
         $currentTime = Carbon::now();
-        return Excel::download(new VendorExport,"vendor_$currentTime.xlsx"); 
+        return Excel::download(new VendorExport,"vendor_$currentTime.xlsx");
     }
 
     //import

@@ -31,7 +31,7 @@
 
     <div class="wrapper" style="padding-top: 30px">
 
-        @include("admin.components.message")
+        @include('admin.components.message')
 
         <div class="col-md-9 offset-md-1">
             <!-- general form elements -->
@@ -51,7 +51,7 @@
                         </div>
 
                         @error('categoryName')
-                        <p class="text text-danger">{{ $message }}</p>
+                            <p class="text text-danger">{{ $message }}</p>
                         @enderror
 
                         <div class="form-group">
@@ -77,7 +77,7 @@
                                 placeholder="Enter Category Description"></textarea>
                         </div>
                         @error('categoryDescription')
-                           <p class="text text-danger">{{ $message }}</p>
+                            <p class="text text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <!-- /.card-body -->
@@ -101,19 +101,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $data=>$category)
+                    @foreach ($categories as $data => $category)
                         <tr>
                             {{-- <input type="hidden" name="categoryId" value="{{ $category->id }}"> --}}
                             <td>{{ ++$data }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
 
-                                <span class="btn btn-success" data-toggle="modal" data-target="#category-detail_{{ $category->id }}"> <i
-                                        class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                <span class="btn btn-success" data-toggle="modal"
+                                    data-target="#category-detail_{{ $category->id }}"> <i class="fa fa-info-circle"
+                                        aria-hidden="true"></i></span>
 
-                                        <span class="btn btn-warning" data-toggle="modal" data-target="#category-edit_{{ $category->id }}"> <i
-                                            class="fa fa-wrench" aria-hidden="true"></i></span>
-                                
+                                <span class="btn btn-warning" data-toggle="modal"
+                                    data-target="#category-edit_{{ $category->id }}"> <i class="fa fa-wrench"
+                                        aria-hidden="true"></i></span>
+
 
                                 <form action="{{ route('admin#category#delete') }}" method="POST" class="d-inline">
                                     @csrf
@@ -131,67 +133,72 @@
         </div>
 
     </div>
-    @foreach ($categories as $data=>$category)
-    <div class="modal fade" id="category-detail_{{ $category->id }}">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Category Detail</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    @foreach ($categories as $data => $category)
+        <div class="modal fade" id="category-detail_{{ $category->id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Category Detail</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Name : {{ $category->name }} </p>
+                        <img src="{{ asset('storage/category/' . $category->image) }}" class="img-thumbnail"
+                            alt="Category Image">
+                        <p>Description : {{ $category->description }} </p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Name : {{ $category->name }} </p>
-                    <img src="{{ asset('storage/category/'.$category->image) }}" class="img-thumbnail" alt="Category Image">
-                    <p>Description : {{ $category->description }} </p>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
     @endforeach
-    @foreach ($categories as $data=>$category)
-    <div class="modal fade" id="category-edit_{{ $category->id }}">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Category</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                        <input type="hidden" name="id" value="{{$category->id}}">
-                        <div class="form-group">
-                            <label for="categoryName">Name</label>
-                            <input type="text" name="categoryName" id="categoryName" class="form-control" value="{{ $category->name }}">
+    @foreach ($categories as $data => $category)
+        <div class="modal fade" id="category-edit_{{ $category->id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Category</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('admin#category#update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <input type="hidden" name="categoryId" value="{{ $category->id }}">
+                            <div class="form-group">
+                                <label for="categoryName">Name</label>
+                                <input type="text" name="categoryName" id="categoryName" class="form-control"
+                                    value="{{ $category->name }}">
+                            </div>
+                            <div class="form-group">
+                                <img src="{{ asset('storage/category/' . $category->image) }}" class="img-thumbnail"
+                                    alt="">
+                                <input type="file" name="logo" id="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="categoryDescription">Description</label>
+                                <textarea type="text" name="categoryDescription" id="categoryDescription" class="form-control">{{ $category->description }}</textarea>
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            {{-- <img src="{{ asset('storage/category/'.request('categoryImage')) }}" class="img-thumbnail" alt=""> --}}
-                            <input type="file" name="logo" id="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="categoryDescription">Description</label>
-                            <textarea type="text" name="categoryDescription" id="categoryDescription" class="form-control">{{$category->description}}</textarea>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
     @endforeach
 @endsection
 
