@@ -98,7 +98,7 @@
 
                     <!-- Purchase Start -->
                     <li class="nav-item">
-                        <a href="" class="nav-link ">
+                        <a href="" class="nav-link {{ request()->routeIs('admin#purchase') ? 'active' : null }} {{ request()->routeIs('admin#purchase#create') ? 'active' : null }} ">
                             {{-- <i class=" fas fa-copy"></i> --}}
                             <i class="nav-icon fas fa-copy "></i>
                             <p>
@@ -109,13 +109,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
+                                <a href="{{ route("admin#purchase") }}" class="nav-link {{ request()->routeIs('admin#purchase') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>View ALl Purchase List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                <a href="{{ route("admin#purchase#create") }}" class="nav-link {{ request()->routeIs('admin#purchase#create') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New Purchase</p>
                                 </a>

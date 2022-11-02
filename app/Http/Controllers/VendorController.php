@@ -86,7 +86,7 @@ class VendorController extends Controller
     //validation
     private function dataValidate($request){
         Validator::make( $request->all() ,[
-            'vendorName' => 'required',
+            'vendorName' => 'required|unique:vendors,name',
             'vendorPhone' => 'required|unique:vendors,phone,'.$request->vendorId, //သူ့ id က မဟုတ်ရင် phone တူလို့မရပါဘူး
             'vendorEmail' => 'required|unique:vendors,email,'.$request->vendorId, //သူ့ id က မဟုတ်ရင် email တူလို့မရပါဘူး
             'vendorWebsite' => 'unique:vendors,website,'.$request->vendorId, // သူ့ id က မဟုတ်ရင် website လဲ တူလို့မရပါဘူး

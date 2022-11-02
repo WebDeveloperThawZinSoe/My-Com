@@ -34,7 +34,7 @@
                     <div class="col-md-5">
                         <form action="{{route('vendor#excel#import')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="file">
+                            <input type="file" name="file" required>
                             <input type="submit" class="btn btn-primary" value="Import">
                         </form>
                     </div>

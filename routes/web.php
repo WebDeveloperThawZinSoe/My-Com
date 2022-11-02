@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,12 @@ Route::middleware([
             Route::post('/home/create', [CategoryController::class, 'create'])->name('admin#category#create');
             Route::post('delete', [CategoryController::class, 'delete'])->name('admin#category#delete');
 
+        });
+
+        //purchase
+        Route::group(["prefix"=>"purchase"],function(){
+            Route::get("", [PurchaseController::class, 'index'])->name("admin#purchase");
+            Route::get("/create", [PurchaseController::class, 'create'])->name("admin#purchase#create");
         });
 
         //vendor
