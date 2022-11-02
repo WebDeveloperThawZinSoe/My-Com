@@ -137,25 +137,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('home#product#category') }}" class="nav-link">
+                                <a href="{{ route('admin#category#home') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Category</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('home#product#category#subcategory') }}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SubCategory</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('home#product') }}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Product</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('home#product#create') }}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New Product</p>
                                 </a>

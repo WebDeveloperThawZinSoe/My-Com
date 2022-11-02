@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\PartnerController;
@@ -38,11 +39,20 @@ Route::middleware([
     /* Admin Panel Slidebar */
     Route::group(['prefix' => 'home'], function () {
         //category
-        Route::group(['prefix' => 'product'], function () {
-            Route::get("category", [RouteController::class, 'product_category'])->name("home#product#category");
-            Route::get("category/subcategory", [RouteController::class, 'product_subcategry'])->name("home#product#category#subcategory");
-            Route::get("/", [RouteController::class, 'product_index'])->name("home#product");
-            Route::get("create", [RouteController::class, 'product_create'])->name("home#product#create");
+        // Route::group(['prefix' => 'product'], function () {
+        //     Route::get("category", [RouteController::class, 'product_category'])->name("home#product#category");
+        //     Route::get("category/subcategory", [RouteController::class, 'product_subcategry'])->name("home#product#category#subcategory");
+        //     Route::get("/", [RouteController::class, 'product_index'])->name("home#product");
+        //     Route::get("create", [RouteController::class, 'product_create'])->name("home#product#create");
+        // });
+
+        //category
+        Route::group(['prefix' => 'category'], function(){
+            //create and list page
+            Route::get('/home', [CategoryController::class, 'home'])->name('admin#category#home');
+            Route::post('/home/create', [CategoryController::class, 'create'])->name('admin#category#create');
+            Route::post('delete', [CategoryController::class, 'delete'])->name('admin#category#delete');
+
         });
 
         //vendor
