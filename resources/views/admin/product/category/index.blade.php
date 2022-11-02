@@ -147,7 +147,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Name : {{ $category->name }} </p>
-                    <img src="app/public/category/{{$category->image}}" class="img-responsive" alt="Category Image">
+                    <img src="{{ asset('storage/category/'.$category->image) }}" class="img-thumbnail" alt="Category Image">
                     <p>Description : {{ $category->description }} </p>
                 </div>
                 <div class="modal-footer justify-content-between">
