@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\VendorController;
-use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,10 +60,14 @@ Route::middleware([
 
             //subcategory
             Route::get("/subcategory", [SubCategoryController::class, 'index'])->name("admin#subcategory");
-            
+            //create
+            Route::post('/subcategory/create',[SubCategoryController::class,'create'])->name('admin#subcategory#create');
+            // //delete
+            Route::get('/subcategory/delete/{id}',[SubCategoryController::class,'delete'])->name('admin#subcategory#delete');
+
         });
 
-        
+
 
         //purchase
         Route::group(["prefix"=>"purchase"],function(){

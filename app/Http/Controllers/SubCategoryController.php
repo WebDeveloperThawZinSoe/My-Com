@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubCategoryController extends Controller
 {
@@ -16,72 +18,48 @@ class SubCategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
-        return view("admin.product.subcategory.index",compact('categories'));
+        $subCategories = SubCategory::get();
+        return view("admin.product.subcategory.index",compact('categories','subCategories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    //create
+    public function create(Request $request){
+        // validation
+        $validation = $this->subCategoryValidation($request);
+        if($validation->fails()){
+            return back()->withErrors($validation)->withInput();
+        }
+
+        //get data
+        $data = $this->getSubCategoryData($request);
+        // dd($data);
+        //creation
+        SubCategory::create($data);
+        return redirect()->route("admin#subcategory");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    //delete
+    public function delete($id){
+        SubCategory::where('id',$id)->delete();
+        return back()->with(['message'=>'Delete successfully']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SubCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SubCategory $subCategory)
-    {
-        //
+    //get subCategoryData
+    private function getSubCategoryData($request){
+        return [
+            'category_id' => $request->category,
+            'name' => $request->categoryName,
+            'created_at' => Carbon::now()
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SubCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SubCategory $subCategory)
-    {
-        //
-    }
+    //subcategory validation
+    private function subCategoryValidation($request){
+        $validationRules = [
+            'category' => 'required',
+            'categoryName' => 'required'
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SubCategory $subCategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SubCategory  $subCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SubCategory $subCategory)
-    {
-        //
+        return Validator::make($request->all(),$validationRules);
     }
 }

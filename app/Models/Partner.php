@@ -16,5 +16,5 @@ class Partner extends Model
         'refer_point',
         'refer_code',
         'address'
-    ]; 
+    ];
 }
