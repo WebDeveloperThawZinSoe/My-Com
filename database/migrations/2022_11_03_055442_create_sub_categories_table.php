@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->unique();
-            $table->string("image");
-            $table->string("phone")->unique();
-            $table->string('password');
-            $table->string('refer_point');
-            $table->string('refer_code')->unique();
-            $table->text('address');
+            $table->foreignId("catgeory_id");
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('sub_categories');
     }
 };

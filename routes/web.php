@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\PurchaseController;
@@ -57,7 +58,12 @@ Route::middleware([
             //update
             Route::post('/update', [CategoryController::class, 'update'])->name('admin#category#update');
 
+            //subcategory
+            Route::get("/subcategory", [SubCategoryController::class, 'index'])->name("admin#subcategory");
+            
         });
+
+        
 
         //purchase
         Route::group(["prefix"=>"purchase"],function(){
@@ -92,6 +98,7 @@ Route::middleware([
         Route::group(['prefix' => 'partner'], function(){
             Route::get('', [PartnerController::class, 'index'])->name('admin#partner');
             Route::get('/create', [PartnerController::class, 'create'])->name('admin#partner#create');
+            Route::post("/create",[PartnerController::class, 'store']);
         });
     });
 });

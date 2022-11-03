@@ -143,7 +143,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ request()->routeIs('home#product#subcategory') ? 'active' : null }}">
+                                <a href="{{route('admin#subcategory')}}" class="nav-link {{ request()->routeIs('admin#subcategory') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>SubCategory</p>
                                 </a>
