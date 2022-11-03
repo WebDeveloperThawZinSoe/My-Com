@@ -22,8 +22,8 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="categoryName" class="form-control" id="name"
-                            placeholder="Enter Category Name">
+                        <input type="text" name="categoryName" class="form-control" id="categoryName"
+                            placeholder="Enter Category Name" value="{{old('categoryName')}}">
                         @error('categoryName')
                         <div class="text-danger">
                             {{$message}}
