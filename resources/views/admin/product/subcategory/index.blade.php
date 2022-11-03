@@ -7,6 +7,7 @@
 
 <div class="wrapper" style="padding-top: 30px">
 
+    @include("admin.components.message")
 
     <div class="col-md-9 offset-md-1">
         <!-- general form elements -->
@@ -81,9 +82,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($subCategories as $item)
+                @foreach ($subCategories as $data=>$item)
                 <tr>
-                    <td>{{ $item['id'] }}</td>
+                    <td>{{ ++$data }}</td>
                     <td>{{ $item['name'] }}</td>
                     <td>{{ $item['category']['name'] }}</td>
                     <td>
