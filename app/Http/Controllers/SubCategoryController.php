@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $categories = Category::OrderBy('id', 'desc')->get();
-        $subCategories = SubCategory::OrderBy('id', 'desc')->get();
+        $subCategories = SubCategory::OrderBy('id', 'desc')->paginate(5);
         return view("admin.product.subcategory.index",compact('categories','subCategories'));
     }
 
@@ -37,6 +37,18 @@ class SubCategoryController extends Controller
         $result = SubCategory::create($data);
         //dd($result);
          return redirect()->route("admin#subcategory")->with(['message' => 'SubCategory Create Success']);
+    }
+
+    //update
+    public function update(Request $request){
+       // validation
+        $this->subCategoryValidation($request);
+
+        $data = $this->getSubCategoryData($request);
+        // dd($data);
+
+       SubCategory::where('id',$request->subCategoryId)->update($data);
+       return redirect()->route('admin#subcategory')->with(['message'=>'Updated Successfully']);
     }
 
     //delete

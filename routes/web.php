@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorController;
-use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\FacebookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +73,9 @@ Route::middleware([
             // //delete
             Route::get('/subcategory/delete/{id}',[SubCategoryController::class,'delete'])->name('admin#subcategory#delete');
 
+            //update
+            Route::post('subcategory/update',[SubCategoryController::class,'update'])->name('admin#subcategory#update');
+
         });
 
 
@@ -104,7 +107,7 @@ Route::middleware([
 
             //vendor excel import
             Route::post("/import", [VendorController::class, 'import'])->name("vendor#excel#import");
-      
+
             //Route::delete('/VendorDeleteAll',[VendorController::class,'deleteAll'])->name('vendor#all#delete');
             // Route::post('/multi-delete', [VendorController::class, 'multiDelete'])->name('vendor#multi#delete');
         });

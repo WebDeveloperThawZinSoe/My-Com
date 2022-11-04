@@ -89,9 +89,9 @@
                     <td>{{ $item['category']['name'] }}</td>
                     <td>
 
-                        <span class="btn btn-success" data-toggle="modal" data-target="#category-detail"> <i
-                                class="fa fa-info-circle" aria-hidden="true"></i></span>
-                        <span class="btn btn-primary" data-toggle="modal" data-target="#category-edit"> <i
+                        <span class="btn btn-success" data-toggle="modal" data-target="#category-detail_{{$item->id}}">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                        <span class="btn btn-primary" data-toggle="modal" data-target="#category-edit_{{$item->id}}"> <i
                                 class="fa fa-wrench" aria-hidden="true"></i></span>
                         <a href="{{route('admin#subcategory#delete',$item['id'])}}"><span class="btn btn-danger"
                                 onclick="return confirm('Are You Sure To Delete This Category?')">
@@ -102,52 +102,98 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $subCategories->links()}}
     </div>
 
 </div>
 
-<div class="modal fade" id="category-detail">
+@foreach ($subCategories as $data => $item)
+<div class="modal fade" id="category-detail_{{$item->id}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Detail Subcategory</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <p><b>Name : </b> {{$item->name}} </p>
+                <p><b>Category : </b> {{$item['category']['name']}} </p>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
 </div>
-<div class="modal fade" id="category-edit">
+@endforeach
+@foreach ($subCategories as $data => $item)
+<div class="modal fade" id="category-edit_{{$item->id}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Edit Subcategory</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <!-- form start -->
+                <form action="{{route('admin#subcategory#update')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="subCategoryId" value="{{ $item->id }}">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="categoryName" class="form-control" id="categoryName"
+                                placeholder="Enter Category Name" value="{{$item->name}}">
+                            @error('categoryName')
+                            <div class="text-danger">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control select2" name="category" style="width: 100%;">
+                                        <option value="">--- SELECT CATEGORY ---</option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{$category->id}}" @if ($item->category_id == $category->id)
+                                            selected @endif>{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                    <div class="text-danger">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+            </form>
+            {{-- from end  --}}
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
 </div>
+@endforeach
 @endsection
 
 @section('js')
