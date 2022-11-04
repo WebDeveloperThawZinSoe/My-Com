@@ -115,7 +115,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route("admin#purchase#create") }}" class="nav-link {{ request()->routeIs('admin#purchase#create') ? 'active' : null }}">
+                                <a href="{{ route("admin#purchase#createPage") }}" class="nav-link {{ request()->routeIs('admin#purchase#create') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New Purchase</p>
                                 </a>

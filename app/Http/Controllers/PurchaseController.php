@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PurchaseController extends Controller
 {
@@ -15,7 +16,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        
+
         return view("admin.purchase.index");
     }
 
@@ -24,65 +25,69 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPage()
     {
         $vendors = Vendor::get();
         return view("admin.purchase.create",compact('vendors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //create
+    public function create(Request $request)
     {
-        //
+        $this->dataValidate($request);
+        $data = $this->getData($request);
+        $res = $this->imageUpload($request->voucherImages, $request->translationImage);
+        $data['voucher_images'] = $res['v'];
+        $data['translation_image'] = $res['t'];
+        Purchase::create($data);
+        return redirect()->route('admin#purchase')->with(['message' => 'Created Successfully']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Purchase $purchase)
-    {
-        //
+
+    //validation
+    private function dataValidate($request){
+        Validator::make($request->all(), [
+            'voucherId' => 'required|unique:purchases,voucher_id,'.$request->id,
+            'vendorId' => 'required',
+            'qty' => 'required',
+            'total' => 'required',
+            'paymentMethod' => 'required',
+            'translationId'=> 'required|unique:purchases,translation_id,'.$request->id,
+            'voucherImages' => 'required',
+            'translationImage' => 'required'
+        ])->validate();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Purchase $purchase)
-    {
-        //
+    //getData
+    private function getData($request){
+        return [
+            'voucher_id' => $request->voucherId,
+            'vendor_id' => $request->vendorId,
+            'qty' => $request->qty,
+            'total' => $request->total,
+            'payment_method' => $request->voucherId,
+            'translation_id' => $request->translationId
+        ];
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Purchase $purchase)
-    {
-        //
+    //images upload
+    private function imageUpload($voucher, $translation){
+        $v = array();
+        $ret = array();
+        if($voucher_images = $voucher){
+            foreach($voucher_images as $image){
+                $fileName = uniqid().$image->getClientOriginalName();
+                $image->storeAs('public/voucher_images', $fileName);
+                $v[] = $fileName;
+            }
+            $ret['v'] = implode('|', $v);
+        }
+        if($translation_img = $translation){
+            $fileName = uniqid().$translation->getClientOriginalName();
+            $translation->storeAs('public/translation_image', $fileName);
+            $ret['t'] = $fileName;
+        }
+        return $ret;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Purchase  $purchase
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Purchase $purchase)
-    {
-        //
-    }
 }

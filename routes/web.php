@@ -62,7 +62,8 @@ Route::middleware([
         //purchase
         Route::group(["prefix"=>"purchase"],function(){
             Route::get("", [PurchaseController::class, 'index'])->name("admin#purchase");
-            Route::get("/create", [PurchaseController::class, 'create'])->name("admin#purchase#create");
+            Route::get("create", [PurchaseController::class, 'createPage'])->name("admin#purchase#createPage");
+            Route::post('create', [PurchaseController::class, 'create'])->name('admin#purchase#create');
         });
 
         //vendor
