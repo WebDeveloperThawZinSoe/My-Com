@@ -1,4 +1,4 @@
-@if (session('message'))
+{{-- @if (session('message'))
 <div class="col-md-12">
 
     <div class="card card-success">
@@ -20,4 +20,17 @@
     </div>
     <!-- /.card -->
 </div>
+@endif --}}
+
+@if (session('message'))
+ <script>
+    $(document).ready(function(){
+        swal({
+            title: "Good job!",
+            text: "{{ session('message') }}",
+            icon: "success",
+            button: "Close",
+            });
+    });
+ </script>
 @endif

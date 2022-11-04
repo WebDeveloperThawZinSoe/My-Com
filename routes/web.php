@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\VendorController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,14 +23,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website.index');
 });
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook']);
+Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+    Route::get("/main/dashboard",function(){
+        return view("dashboard");
+    });
 
     Route::fallback([RouteController::class,"error_404"])->name("error_404");
 
@@ -57,7 +70,19 @@ Route::middleware([
             //update
             Route::post('/update', [CategoryController::class, 'update'])->name('admin#category#update');
 
+            //subcategory
+            Route::get("/subcategory", [SubCategoryController::class, 'index'])->name("admin#subcategory");
+            //create
+            Route::post('/subcategory/create',[SubCategoryController::class,'create'])->name('admin#subcategory#create');
+            // //delete
+            Route::get('/subcategory/delete/{id}',[SubCategoryController::class,'delete'])->name('admin#subcategory#delete');
+
+            //update
+            Route::post('subcategory/update',[SubCategoryController::class,'update'])->name('admin#subcategory#update');
+
         });
+
+
 
         //purchase
         Route::group(["prefix"=>"purchase"],function(){
@@ -87,12 +112,16 @@ Route::middleware([
 
             //vendor excel import
             Route::post("/import", [VendorController::class, 'import'])->name("vendor#excel#import");
+
+            //Route::delete('/VendorDeleteAll',[VendorController::class,'deleteAll'])->name('vendor#all#delete');
+            // Route::post('/multi-delete', [VendorController::class, 'multiDelete'])->name('vendor#multi#delete');
         });
 
         //Partner
         Route::group(['prefix' => 'partner'], function(){
             Route::get('', [PartnerController::class, 'index'])->name('admin#partner');
             Route::get('/create', [PartnerController::class, 'create'])->name('admin#partner#create');
+            Route::post("/create",[PartnerController::class, 'store']);
         });
     });
 });

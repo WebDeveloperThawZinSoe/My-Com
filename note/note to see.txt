@@ -7,3 +7,4 @@ https://bootsnipp.com/snippets/66Ex7
 https://www.geeksforgeeks.org/laravel-import-export-excel-file/
 https://techvblogs.com/blog/laravel-9-import-export-excel-csv-file
 https://postsrc.com/code-snippets/how-to-get-currently-active-route-in-laravel
+https://www.itsolutionstuff.com/post/laravel-9-summernote-editor-with-image-uploadexample.html

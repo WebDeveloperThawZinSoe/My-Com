@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
+            $table->string("name")->unique();
+            $table->string("image");
+            $table->string("phone")->unique();
+            $table->string('password');
+            $table->string('refer_point');
+            $table->string('refer_code')->unique();
+            $table->text('address');
             $table->timestamps();
         });
     }
