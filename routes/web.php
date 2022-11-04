@@ -38,6 +38,10 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
+    Route::get("/main/dashboard",function(){
+        return view("dashboard");
+    });
+
     Route::fallback([RouteController::class,"error_404"])->name("error_404");
 
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin#home');
