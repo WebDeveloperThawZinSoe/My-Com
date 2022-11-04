@@ -100,6 +100,9 @@ Route::middleware([
 
             //vendor excel import
             Route::post("/import", [VendorController::class, 'import'])->name("vendor#excel#import");
+      
+            //Route::delete('/VendorDeleteAll',[VendorController::class,'deleteAll'])->name('vendor#all#delete');
+            // Route::post('/multi-delete', [VendorController::class, 'multiDelete'])->name('vendor#multi#delete');
         });
 
         //Partner

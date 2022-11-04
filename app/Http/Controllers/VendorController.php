@@ -105,4 +105,20 @@ class VendorController extends Controller
        Excel::import(new VendorImport,request()->file('file'));
        return back()->with(['message' => 'Excel Import Success']);
     }
+
+    //Delete All
+    // public function deleteAll(Request $request)
+    // {
+    //     $ids = $request->ids;
+    //     Vendor::whereIn('id',explode(",",$ids))->delete();
+    //     return response()->json(['success'=>"Products Deleted successfully."]);
+    // }
+
+    //multiDelete
+    // public function multiDelete(Request $request) 
+    // {
+    //     Vendor::whereIn('id', $request->get('selected'))->delete();
+    
+    //     return response("Selected post(s) deleted successfully.", 200);
+    // }
 }
