@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('translation_id');
             $table->string('voucher_images');
             $table->string('translation_image');
+            $table->text('products');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class Purchase extends Model
         'payment_method',
         'translation_id',
         'voucher_images',
-        'translation_image'
+        'translation_image',
+        'products',
     ];
 }

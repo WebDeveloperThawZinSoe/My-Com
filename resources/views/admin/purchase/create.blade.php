@@ -3,6 +3,7 @@
 @section('content')
 <div class="col-md-12 ">
     <br>
+    @include("admin.components.message")
     <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
@@ -89,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <label for="products">Products</label>
-                        <textarea id="summernote" name="" class="form-control" placeholder="Enter Products" cols="30" rows="10"></textarea>
+                        <textarea id="summernote" name="product" class="form-control" placeholder="Enter Products" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
