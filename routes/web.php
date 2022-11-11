@@ -4,12 +4,14 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ProductModelController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('website.index');
-});
+Route::get('/', [WebsiteController::class,'show'])->name('website#home');
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -83,6 +83,12 @@ Route::middleware([
 
         });
 
+        //product
+        Route::prefix('product')->group(function () {
+            Route::get('/model',[ProductModelController::class,'index'])->name('admin#productModel');
+            Route::post('/create',[ProductModelController::class,'create'])->name('admin#productModel#create');
+            Route::get('/details/{id}',[ProductModelController::class,'details'])->name('admin#productModel#details');
+        });
 
 
         //purchase
@@ -129,26 +135,26 @@ Route::middleware([
 
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-  
+
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-  
+
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 });

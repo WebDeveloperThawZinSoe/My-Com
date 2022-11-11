@@ -13,7 +13,7 @@ class SubCategory extends Model
         'name'
     ];
     use HasFactory;
-    
+
     public function Category(){
         return $this->belongsTo('App\Models\Category');
     }
