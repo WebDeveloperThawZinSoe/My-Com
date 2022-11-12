@@ -133,6 +133,9 @@
                         </p>
                         <p><b>Category : </b>{{$data->category->name}}</p>
                         <p><b>Sub-Category : </b>{{$data->subcategory->name}}</p>
+
+                        <input type="hidden" value="{{Auth::user()->id}}" id="userId">
+                        <input type="hidden" value="{{$data->id}}" id="productId">
                         <div class="size-wrap">
                             <div class="block-26 mb-2">
                                 <h4>Size</h4>
@@ -178,8 +181,9 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-center">
-                                <p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i
-                                            class="icon-shopping-cart"></i> Add to Cart</a></p>
+                                <div class="col-sm-12 text-center">
+                                    <button type="button" class="btn btn-primary" id="addCartBtn">Add to Cart</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -198,7 +202,7 @@
                                             href="#pills-description" role="tab" aria-controls="pills-description"
                                             aria-expanded="true">Description</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill"
                                             href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer"
                                             aria-expanded="true">Manufacturer</a>
@@ -207,7 +211,7 @@
                                         <a class="nav-link" id="pills-review-tab" data-toggle="pill"
                                             href="#pills-review" role="tab" aria-controls="pills-review"
                                             aria-expanded="true">Review</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
 
                                 <div class="tab-content" id="pills-tabContent">
@@ -216,7 +220,7 @@
                                         {{$data->description}}
                                     </div>
 
-                                    <div class="tab-pane border fade" id="pills-manufacturer" role="tabpanel"
+                                    {{-- <div class="tab-pane border fade" id="pills-manufacturer" role="tabpanel"
                                         aria-labelledby="pills-manufacturer-tab">
                                         <p>Even the all-powerful Pointing has no control about the blind texts it is an
                                             almost unorthographic life One day however a small line of blind text by the
@@ -368,7 +372,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -461,4 +465,64 @@
         </div>
     </footer>
 </div>
+@endsection
+@section('scriptSource')
+<script>
+    $(document).ready(function () {
+
+                    var quantitiy = 0;
+                    $('.quantity-right-plus').click(function (e) {
+
+                        // Stop acting like a button
+                        e.preventDefault();
+                        // Get the field name
+                        var quantity = parseInt($('#quantity').val());
+
+                        // If is not undefined
+
+                        $('#quantity').val(quantity + 1);
+
+
+                        // Increment
+
+                    });
+
+                    $('.quantity-left-minus').click(function (e) {
+                        // Stop acting like a button
+                        e.preventDefault();
+                        // Get the field name
+                        var quantity = parseInt($('#quantity').val());
+
+                        // If is not undefined
+
+                        // Increment
+                        if (quantity > 0) {
+                            $('#quantity').val(quantity - 1);
+                        }
+                    });
+
+                    $('#addCartBtn').click(function (e) {
+                        e.preventDefault();
+                        // alert($('#quantity').val());
+                        $data = {
+                            'orderCount' : $('#quantity').val(),
+                            'userId' : $('#userId').val(),
+                            'productId' : $('#productId').val(),
+                        }
+                        // console.log($data);
+
+                        $.ajax({
+                        type: "get",
+                        url: "/home/product/ajax/addtocart",
+                        data: $data,
+                        dataType: 'json',
+                        success: function (response) {
+                           if(response.status == 'success'){
+                            window.location.href = "http://localhost:8000"
+                           }
+                        }
+                        });
+                    });
+                });
+</script>
 @endsection

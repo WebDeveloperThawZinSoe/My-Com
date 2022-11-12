@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
@@ -88,6 +89,9 @@ Route::middleware([
             Route::get('/model',[ProductModelController::class,'index'])->name('admin#productModel');
             Route::post('/create',[ProductModelController::class,'create'])->name('admin#productModel#create');
             Route::get('/details/{id}',[ProductModelController::class,'details'])->name('admin#productModel#details');
+
+            //add to cart with ajax
+            Route::get('/ajax/addtocart',[CartController::class,'addToCart'])->name('user#addToCart');
         });
 
 
