@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\ProductModel;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProductModelController extends Controller
@@ -35,8 +37,8 @@ class ProductModelController extends Controller
     //details
     public function details($id){
         $data = ProductModel::where('id',$id)->first();
-        // dd($data);
-        return view('website.product-detail',compact('data'));
+        $cart = Cart::where('user_id',Auth::user()->id)->get();
+        return view('website.product-detail',compact('data','cart'));
     }
 
 
