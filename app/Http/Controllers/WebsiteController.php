@@ -12,7 +12,7 @@ class WebsiteController extends Controller
 {
     public function __construct()
     {
-    $this->middleware('auth')->except(['dashboard']);
+    $this->middleware('auth')->except(['index']);
     }
     //show product models
     public function show(){
